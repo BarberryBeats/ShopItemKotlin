@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">lvl7hw1</string>
+    <string name="add">ADD</string>
+    <string name="delete">delete</string>
+    <string name="edit">edit</string>
+    <string name="type_id">type id</string>
+    <string name="getitem">getItem</string>
+    <string name="getlist">getList</string>
+</resources>
