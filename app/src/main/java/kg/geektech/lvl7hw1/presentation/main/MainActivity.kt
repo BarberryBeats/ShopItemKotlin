@@ -1,11 +1,15 @@
-package kg.geektech.lvl7hw1.presentation
+package kg.geektech.lvl7hw1.presentation.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import kg.geektech.lvl7hw1.databinding.ActivityMainBinding
 import kg.geektech.lvl7hw1.domain.entities.ShopItem
+import kg.geektech.lvl7hw1.presentation.print
+import kg.geektech.lvl7hw1.presentation.shoplist.ShopListActivity
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,10 +32,9 @@ class MainActivity : AppCompatActivity() {
             Log.e("Ray", "ShopList: $it")
         }
         viewModel.shopItemLD.observe(this){
-            Log.e("Ray", "ShopItem: " )
+            Log.e("Ray", "ShopItem: $it" )
         }
     }
-
 
     private fun initListeners() {
         binding.apply {
@@ -44,19 +47,18 @@ class MainActivity : AppCompatActivity() {
             btnDelete.setOnClickListener {
                 viewModel.deleteShopItem(shopItemList[etTypeId.print()])
             }
-
             btnGetItem.setOnClickListener {
                 viewModel.getShopItem(etTypeId.print())
             }
-
             btnGetList.setOnClickListener {
-                viewModel.getShopList()
-            }
 
+            }
             btnEdit.setOnClickListener {
                 viewModel.editShopItem(shopItemList[etTypeId.print()])
             }
-
+            btnGo.setOnClickListener {
+                startActivity(Intent(this@MainActivity, ShopListActivity::class.java))
+            }
         }
 
     }

@@ -6,4 +6,5 @@
     <string name="type_id">type id</string>
     <string name="getitem">getItem</string>
     <string name="getlist">getList</string>
+    <string name="go">GO</string>
 </resources>

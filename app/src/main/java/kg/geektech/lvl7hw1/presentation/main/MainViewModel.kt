@@ -1,4 +1,4 @@
-package kg.geektech.lvl7hw1.presentation
+package kg.geektech.lvl7hw1.presentation.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -15,37 +15,28 @@ class MainViewModel : ViewModel() {
     private val getShopItemUseCase = GetShopItemUseCase(repository)
     private val getShopListUseCase = GetShopListUseCase(repository)
     private val editShopItemUseCase = EditShopItemUseCase(repository)
-
-    private val _shopListLD = MutableLiveData<List<ShopItem>>()
     private val _shopItemLD = MutableLiveData<ShopItem>()
-
-    val shopListLD: LiveData<List<ShopItem>>
-        get() = _shopListLD
     val shopItemLD: LiveData<ShopItem>
         get() = _shopItemLD
 
-    fun getShopList() {
-        _shopListLD.value = getShopListUseCase.getShopList()
-    }
 
-    fun getShopItem(shopItemId: Int){
+    val shopListLD = getShopListUseCase.getShopList()
+
+    fun getShopItem(shopItemId: Int) {
         _shopItemLD.value = getShopItemUseCase.getShopItem(shopItemId)
     }
 
-    fun addShopItem(shopItem: ShopItem){
+    fun addShopItem(shopItem: ShopItem) {
         addShopItemUseCase.addShopItem(shopItem)
-        getShopList()
     }
 
-    fun deleteShopItem(shopItem: ShopItem){
+    fun deleteShopItem(shopItem: ShopItem) {
         deleteShopItemUseCase.deleteShopItem(shopItem)
-        getShopList()
     }
 
-    fun editShopItem(shopItem: ShopItem){
-        shopItem.enabled = !shopItem.enabled
-        editShopItemUseCase.editShopItem(shopItem)
-        _shopItemLD.value = getShopItemUseCase.getShopItem(shopItem.id)
+    fun editShopItem(shopItem: ShopItem) {
+        val newItem = shopItem.copy(enabled = !shopItem.enabled)
+        editShopItemUseCase.editShopItem(newItem)
     }
 
 }
