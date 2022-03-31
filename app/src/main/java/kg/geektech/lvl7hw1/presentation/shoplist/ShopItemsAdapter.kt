@@ -64,6 +64,7 @@ class ShopItemsAdapter(private val onClickEnabled: (element: Boolean, shopItem: 
             itemView.setOnClickListener {
                 onClickEnabled(shopItem.enabled, shopItem)
                 notifyItemChanged(adapterPosition)
+                //
             }
 
         }
